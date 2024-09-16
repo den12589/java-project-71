@@ -7,10 +7,10 @@ clean:
 	./gradlew clean
 
 build:
-	./gradlew clean build
+	gradle clean build
 
 install:
-	./gradlew clean install
+	gradle clean install
 
 run-dist:
 	./build/install/java-package/bin/java-package
