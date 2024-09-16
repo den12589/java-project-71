@@ -24,7 +24,7 @@ test:
 report:
 	./gradlew jacocoTestReport
 
-lint:
+checkstyleMain:
 	./gradlew checkstyleMain
 
 check-deps:
