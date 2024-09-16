@@ -13,7 +13,7 @@ install:
 	gradle clean install
 
 run-dist:
-	./build/install/java-package/bin/java-package
+	./build/install/app/bin/app java-project-71/app/src/main/resources/file1.json java-project-71/app/src/main/resources/file2.json
 
 run:
 	./gradlew run

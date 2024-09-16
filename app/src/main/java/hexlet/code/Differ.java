@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class Differ {
 
-    public static String generate(String filePath1, String filePath2, String formatOutput) throws IOException {
+    public static String generate(String filePath1, String filePath2) throws IOException {
         String content1 = readFile(filePath1);
         String content2 = readFile(filePath2);
 
@@ -20,7 +20,7 @@ public class Differ {
 
         List<Map<String, Object>> result = Comparator.compare(parseFile1, parseFile2);
 
-        return format(result, formatOutput);
+        return StylishFormatter.format(result);
     }
 
     private static String readFile(String filePath) throws IOException {
@@ -28,12 +28,12 @@ public class Differ {
         return Files.readString(path).trim();
     }
 
-    private static String getFileType(String filePath){
+    private static String getFileType(String filePath) {
         String[] strings = filePath.split("\\.");
         return strings[strings.length - 1];
     }
 
-    private static String format(List<Map<String, Object>> result, String formatOutput){
+    private static String format(List<Map<String, Object>> result, String formatOutput) {
         return switch (formatOutput) {
             case "stylish" -> StylishFormatter.format(result);
             case "json" -> PlanFormatter.format(result);
