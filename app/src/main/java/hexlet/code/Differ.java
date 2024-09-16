@@ -36,7 +36,7 @@ public class Differ {
     private static String format(List<Map<String, Object>> result, String formatOutput){
         return switch (formatOutput) {
             case "stylish" -> StylishFormatter.format(result);
-            case "json" -> JsonFormatter.format(result);
+            case "json" -> PlanFormatter.format(result);
             default -> throw new RuntimeException("Unsupported format");
         };
     }
