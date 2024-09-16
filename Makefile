@@ -6,3 +6,5 @@ checkstyleMain:
 
 test:
 	make -C app test
+report:
+	make -C app report

@@ -22,7 +22,7 @@ test:
 	gradle test
 
 report:
-	./gradlew jacocoTestReport
+	gradle jacocoTestReport
 
 checkstyleMain:
 	gradle checkstyleMain
