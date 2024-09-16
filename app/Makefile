@@ -19,13 +19,13 @@ run:
 	./gradlew run
 
 test:
-	./gradlew test
+	gradle test
 
 report:
 	./gradlew jacocoTestReport
 
 checkstyleMain:
-	./gradlew checkstyleMain
+	gradle checkstyleMain
 
 check-deps:
 	./gradlew dependencyUpdates -Drevision=release
