@@ -1,7 +1,5 @@
 package hexlet.code;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -10,7 +8,7 @@ import java.util.Map;
 
 public class Differ {
 
-    public static String generate(String filePath1, String filePath2, String format) throws IOException {
+    public static String generate(String filePath1, String filePath2, String formatOutput) throws IOException {
         String content1 = readFile(filePath1);
         String content2 = readFile(filePath2);
 
@@ -22,8 +20,7 @@ public class Differ {
 
         List<Map<String, Object>> result = Comparator.compare(parseFile1, parseFile2);
 
-
-        return "";
+        return format(result, formatOutput);
     }
 
     private static String readFile(String filePath) throws IOException {
@@ -34,5 +31,13 @@ public class Differ {
     private static String getFileType(String filePath){
         String[] strings = filePath.split("\\.");
         return strings[strings.length - 1];
+    }
+
+    private static String format(List<Map<String, Object>> result, String formatOutput){
+        return switch (formatOutput) {
+            case "stylish" -> StylishFormatter.format(result);
+            case "json" -> JsonFormatter.format(result);
+            default -> throw new RuntimeException("Unsupported format");
+        };
     }
 }
