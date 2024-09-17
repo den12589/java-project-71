@@ -2,6 +2,7 @@ package hexlet.code;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.StringJoiner;
 
 public class StylishFormatter {
@@ -10,13 +11,26 @@ public class StylishFormatter {
         result.add("{");
         for (Map<String, Object> map: compareList) {
             var status = map.get("STATUS");
+            String nextObj;
             switch (status.toString()) {
-                case "ADD": result.add("+ " + map.get("NAME") + ": " + map.get("NEW VALUE").toString());
-                case "DELETED": result.add("- " + map.get("NAME") + ": " + map.get("OLD VALUE").toString());
-                case "SAME": result.add("  " + map.get("NAME") + ": " + map.get("OLD VALUE").toString());
+                case "ADD":
+                     nextObj = Objects.isNull(map.get("NEW VALUE")) ? "null" : map.get("NEW VALUE").toString();
+                    result.add("+ " + map.get("NAME") + ": " + nextObj);
+                    break;
+                case "DELETED":
+                     nextObj = Objects.isNull(map.get("OLD VALUE")) ? "null" : map.get("OLD VALUE").toString();
+                    result.add("- " + map.get("NAME") + ": " + nextObj);
+                    break;
+                case "SAME":
+                    nextObj = Objects.isNull(map.get("OLD VALUE")) ? "null" : map.get("OLD VALUE").toString();
+                    result.add("  " + map.get("NAME") + ": " + nextObj);
+                    break;
                 case "UPDATE":
-                    result.add("- " + map.get("NAME") + ": " + map.get("OLD VALUE").toString());
-                    result.add("+ " + map.get("NAME") + ": " + map.get("NEW VALUE").toString());
+                    nextObj = Objects.isNull(map.get("OLD VALUE")) ? "null" : map.get("OLD VALUE").toString();
+                    result.add("- " + map.get("NAME") + ": " + nextObj);
+                    nextObj = Objects.isNull(map.get("NEW VALUE")) ? "null" : map.get("NEW VALUE").toString();
+                    result.add("+ " + map.get("NAME") + ": " + nextObj);
+                    break;
                 default: throw new RuntimeException("Can't read status at StylishFormat");
             }
         }

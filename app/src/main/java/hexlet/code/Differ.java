@@ -24,7 +24,7 @@ public class Differ {
     }
 
     private static String readFile(String filePath) throws IOException {
-        var path = Paths.get(filePath).toAbsolutePath().normalize();
+        var path = Paths.get(filePath);
         return Files.readString(path).trim();
     }
 
@@ -36,7 +36,7 @@ public class Differ {
     private static String format(List<Map<String, Object>> result, String formatOutput) {
         return switch (formatOutput) {
             case "stylish" -> StylishFormatter.format(result);
-            case "json" -> PlanFormatter.format(result);
+            case "json" -> PlainFormatter.format(result);
             default -> throw new RuntimeException("Unsupported format");
         };
     }
