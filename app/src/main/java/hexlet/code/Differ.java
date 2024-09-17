@@ -1,5 +1,9 @@
 package hexlet.code;
 
+import hexlet.code.formatters.JsonFormatter;
+import hexlet.code.formatters.PlainFormatter;
+import hexlet.code.formatters.StylishFormatter;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -20,7 +24,7 @@ public class Differ {
 
         List<Map<String, Object>> result = Comparator.compare(parseFile1, parseFile2);
 
-       return format(result, formatOutput);
+        return format(result, formatOutput);
     }
 
     private static String readFile(String filePath) throws IOException {
@@ -37,6 +41,7 @@ public class Differ {
         return switch (formatOutput) {
             case "stylish" -> StylishFormatter.format(result);
             case "plain" -> PlainFormatter.format(result);
+            case "json" -> JsonFormatter.format(result);
             default -> throw new RuntimeException("Unsupported format");
         };
     }

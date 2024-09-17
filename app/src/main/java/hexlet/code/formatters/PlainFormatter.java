@@ -1,4 +1,4 @@
-package hexlet.code;
+package hexlet.code.formatters;
 
 import java.util.List;
 import java.util.Map;
@@ -25,7 +25,7 @@ public class PlainFormatter {
                     if (value == null) {
                         next.append("null");
                     } else {
-                        if (value.getClass().isArray()) {
+                        if (value instanceof List) {
                             next.append("[complex value]");
                         } else {
                             next.append(value);
@@ -39,7 +39,7 @@ public class PlainFormatter {
                     Object oldValue = map.get("OLD VALUE");
                     if (oldValue == null) {
                         next.append("null to ");
-                    } else if (oldValue.getClass().isArray()) {
+                    } else if (oldValue instanceof Object[]) {
                         next.append("[complex value] to ");
                     } else {
                         next.append(oldValue).append(" to ");
