@@ -18,24 +18,27 @@ public class PlainFormatter {
                 case "UPDATE":
                     next.append("was updated. From ");
                     Object oldValue = map.get("OLD VALUE");
-                    if(oldValue == null){
+                    if (oldValue == null) {
                         next.append("null to ");
-                    } else if(!oldValue.getClass().isPrimitive()){
+                    } else if (!oldValue.getClass().isPrimitive()) {
                         next.append("[complex value] to ");
-                    } else
+                    } else {
                         next.append(oldValue).append(" to");
-
+                    }
                     Object newValue = map.get("NEW VALUE");
-                    if(newValue == null){
+                    if (newValue == null) {
                         next.append("null");
-                    } else if(!newValue.getClass().isPrimitive()){
+                    } else if (!newValue.getClass().isPrimitive()) {
                         next.append("[complex value]");
-                    } else
+                    } else {
                         next.append(newValue);
+                    }
                     break;
                 case "DELETED":
 
                     break;
+                default:
+                    throw new RuntimeException();
             }
 
         }
