@@ -11,7 +11,7 @@ public class Parser {
     public static Map<String, Object> parse(String content, String typeFile) throws JsonProcessingException {
         return switch (typeFile) {
             case "json" -> new ObjectMapper().readValue(content, Map.class);
-            case "yaml","yml" -> new ObjectMapper(new YAMLFactory()).readValue(content, Map.class);
+            case "yaml", "yml" -> new ObjectMapper(new YAMLFactory()).readValue(content, Map.class);
             default -> throw new RuntimeException("file_type isn't supported");
         };
     }
