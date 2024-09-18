@@ -11,18 +11,24 @@ public class StylishFormatter {
         result.add("{");
         for (Map<String, Object> map : compareList) {
             var name = map.get("NAME");
-            var status = map.get("STATUS");
-            if (status.equals("REMOVED") || status.equals("UPDATE") || status.equals("SAME")) {
-                String oldValue = Objects.isNull(map.get("OLD VALUE")) ? "null" : map.get("OLD VALUE").toString();
-                if (status.equals("SAME")) {
-                    result.add("   " + name + ": " + oldValue);
-                } else {
+            String status = map.get("STATUS").toString();
+            String oldValue = Objects.isNull(map.get("OLD VALUE")) ? "null" : map.get("OLD VALUE").toString();
+            String newValue = Objects.isNull(map.get("NEW VALUE")) ? "null" : map.get("NEW VALUE").toString();
+            switch (status) {
+                case "ADD":
+                    result.add(" + " + name + ": " + newValue);
+                    break;
+                case "REMOVED":
                     result.add(" - " + name + ": " + oldValue);
-                }
-            }
-            if (status.equals("ADD") || status.equals("UPDATE")) {
-                String temp = Objects.isNull(map.get("NEW VALUE")) ? "null" : map.get("NEW VALUE").toString();
-                result.add(" + " + name + ": " + temp);
+                    break;
+                case "SAME":
+                    result.add("   " + name + ": " + oldValue);
+                    break;
+                case "UPDATE":
+                    result.add(" - " + name + ": " + oldValue);
+                    result.add(" + " + name + ": " + newValue);
+                    break;
+                default: throw new RuntimeException("Status isn't correct");
             }
         }
         result.add("}");
