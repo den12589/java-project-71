@@ -15,18 +15,15 @@ public class PlainFormatter {
             }
             StringBuilder next = new StringBuilder();
             next.append("Property '").append(map.get("NAME").toString()).append("' was ");
-            if (status.equals("REMOVED")) {
-                next.append("removed");
-            }
-            if (status.equals("ADD")) {
-                next.append("added with value: ")
+            switch (status) {
+                case "REMOVED" -> next.append("removed");
+                case "ADD" -> next.append("added with value: ")
                         .append(createValueString(map.get("NEW VALUE")));
-            }
-            if (status.equals("UPDATE")) {
-                next.append("updated. From ")
+                case "UPDATE" -> next.append("updated. From ")
                         .append(createValueString(map.get("OLD VALUE")))
                         .append(" to ")
                         .append(createValueString(map.get("NEW VALUE")));
+                default -> throw new RuntimeException("Status isn't correct");
             }
             stringJoiner.add(next);
         }
