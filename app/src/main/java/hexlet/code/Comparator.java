@@ -20,12 +20,10 @@ public class Comparator {
             if (!file1.containsKey(nextKey)) {
                 map.put("STATUS", "ADD");
                 map.put("NEW VALUE", file2.get(nextKey));
-                map.put("OLD VALUE", null);
             } else {
                 if (!file2.containsKey(nextKey)) {
                     map.put("STATUS", "REMOVED");
                     map.put("OLD VALUE", file1.get(nextKey));
-                    map.put("NEW VALUE", null);
                 } else {
                     var firstGetObj = file1.get(nextKey);
                     var secondGetObj = file2.get(nextKey);
@@ -33,7 +31,6 @@ public class Comparator {
                         if (firstGetObj == null && secondGetObj == null) {
                             map.put("STATUS", "SAME");
                             map.put("OLD VALUE", null);
-                            map.put("NEW VALUE", null);
                         } else {
                             map.put("STATUS", "UPDATE");
                             map.put("OLD VALUE", firstGetObj);
@@ -43,8 +40,6 @@ public class Comparator {
                         if (firstGetObj.equals(secondGetObj)) {
                             map.put("STATUS", "SAME");
                             map.put("OLD VALUE", firstGetObj);
-                            map.put("NEW VALUE", secondGetObj);
-
                         } else {
                             map.put("STATUS", "UPDATE");
                             map.put("OLD VALUE", firstGetObj);
