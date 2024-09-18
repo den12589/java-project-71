@@ -10,10 +10,9 @@ public class StylishFormatter {
         StringJoiner result = new StringJoiner("\n");
         result.add("{");
         compareList.forEach(map -> {
-            String status = map.get("STATUS").toString();
             String oldValue = Objects.isNull(map.get("OLD VALUE")) ? "null" : map.get("OLD VALUE").toString();
             String newValue = Objects.isNull(map.get("NEW VALUE")) ? "null" : map.get("NEW VALUE").toString();
-            switch (status) {
+            switch (map.get("STATUS").toString()) {
                 case "ADD":
                     result.add(" + " + map.get("NAME") + ": " + newValue);
                     break;
