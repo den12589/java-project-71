@@ -9,32 +9,26 @@ public class PlainFormatter {
     public static String format(List<Map<String, Object>> compareList) {
         StringJoiner stringJoiner = new StringJoiner("\n");
         for (Map<String, Object> map : compareList) {
-            StringBuilder next = new StringBuilder();
-            String begin = "Property '" + map.get("NAME").toString() + "' was ";
             String status = map.get("STATUS").toString();
-
-            switch (status) {
-                case "SAME":
-                    break;
-                case "REMOVED":
-                    next.append(begin).append("removed");
-                    stringJoiner.add(next);
-                    break;
-                case "ADD":
-                    next.append(begin).append("added with value: ");
-                    next.append(createValueString(map.get("NEW VALUE")));
-                    stringJoiner.add(next);
-                    break;
-                case "UPDATE":
-                    next.append(begin).append("updated. From ");
-                    next.append(createValueString(map.get("OLD VALUE")));
-                    next.append(" to ");
-                    next.append(createValueString(map.get("NEW VALUE")));
-                    stringJoiner.add(next);
-                    break;
-                default:
-                    throw new RuntimeException("Can't read status at PlainFormat");
+            if (status.equals("SAME")) {
+                continue;
             }
+            StringBuilder next = new StringBuilder();
+            next.append("Property '").append(map.get("NAME").toString()).append("' was ");
+            if (status.equals("REMOVED")) {
+                next.append("removed");
+            }
+            if (status.equals("ADD")) {
+                next.append("added with value: ")
+                        .append(createValueString(map.get("NEW VALUE")));
+            }
+            if (status.equals("UPDATE")) {
+                next.append("updated. From ")
+                        .append(createValueString(map.get("OLD VALUE")))
+                        .append(" to ")
+                        .append(createValueString(map.get("NEW VALUE")));
+            }
+            stringJoiner.add(next);
         }
         return stringJoiner.toString();
     }
