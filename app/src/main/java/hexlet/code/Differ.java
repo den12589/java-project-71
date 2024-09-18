@@ -1,5 +1,6 @@
 package hexlet.code;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import hexlet.code.formatters.JsonFormatter;
 import hexlet.code.formatters.PlainFormatter;
 import hexlet.code.formatters.StylishFormatter;
@@ -41,7 +42,7 @@ public class Differ {
         return strings[strings.length - 1];
     }
 
-    private static String format(List<Map<String, Object>> result, String formatOutput) {
+    private static String format(List<Map<String, Object>> result, String formatOutput) throws JsonProcessingException {
         return switch (formatOutput) {
             case "stylish" -> StylishFormatter.format(result);
             case "plain" -> PlainFormatter.format(result);
