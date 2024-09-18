@@ -13,11 +13,10 @@ public class JsonFormatter {
         StringJoiner stringJoiner = new StringJoiner("\n");
         stringJoiner.add("{");
         int count = 1;
-        for (Map map : compareList) {
+        for (Map<String, Object> map : compareList) {
             stringJoiner.add("  \"change_" + count + "\": " + mapper.writeValueAsString(map) + ",");
             count++;
         }
-        String result = stringJoiner.toString().substring(0, stringJoiner.length() - 1) + "\n}";
-        return result;
+        return stringJoiner.toString().substring(0, stringJoiner.length() - 1) + "\n}";
     }
 }
