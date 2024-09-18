@@ -7,10 +7,10 @@ clean:
 	./gradlew clean
 
 build:
-	gradle clean build
+	./gradlew clean build
 
 install:
-	gradle clean install
+	./gradlew clean install
 
 run-dist:
 	./build/install/app/bin/app
