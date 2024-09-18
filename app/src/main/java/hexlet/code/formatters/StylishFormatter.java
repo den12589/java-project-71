@@ -15,21 +15,21 @@ public class StylishFormatter {
             switch (status.toString()) {
                 case "ADD":
                     nextObj = Objects.isNull(map.get("NEW VALUE")) ? "null" : map.get("NEW VALUE").toString();
-                    result.add("+ " + map.get("NAME") + ": " + nextObj);
+                    result.add(" + " + map.get("NAME") + ": " + nextObj);
                     break;
                 case "REMOVED":
                     nextObj = Objects.isNull(map.get("OLD VALUE")) ? "null" : map.get("OLD VALUE").toString();
-                    result.add("- " + map.get("NAME") + ": " + nextObj);
+                    result.add(" - " + map.get("NAME") + ": " + nextObj);
                     break;
                 case "SAME":
                     nextObj = Objects.isNull(map.get("OLD VALUE")) ? "null" : map.get("OLD VALUE").toString();
-                    result.add("  " + map.get("NAME") + ": " + nextObj);
+                    result.add("   " + map.get("NAME") + ": " + nextObj);
                     break;
                 case "UPDATE":
                     nextObj = Objects.isNull(map.get("OLD VALUE")) ? "null" : map.get("OLD VALUE").toString();
-                    result.add("- " + map.get("NAME") + ": " + nextObj);
+                    result.add(" - " + map.get("NAME") + ": " + nextObj);
                     nextObj = Objects.isNull(map.get("NEW VALUE")) ? "null" : map.get("NEW VALUE").toString();
-                    result.add("+ " + map.get("NAME") + ": " + nextObj);
+                    result.add(" + " + map.get("NAME") + ": " + nextObj);
                     break;
                 default:
                     throw new RuntimeException("Can't read status at StylishFormat");
