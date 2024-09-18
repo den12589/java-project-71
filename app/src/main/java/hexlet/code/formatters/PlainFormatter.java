@@ -1,15 +1,13 @@
 package hexlet.code.formatters;
 
-import java.util.List;
-import java.util.Map;
-import java.util.StringJoiner;
+import java.util.*;
 
 public class PlainFormatter {
     public static String format(List<Map<String, Object>> compareList) {
         StringJoiner stringJoiner = new StringJoiner("\n");
         for (Map<String, Object> map : compareList) {
             StringBuilder next = new StringBuilder();
-            String begin = "Property  '" + map.get("NAME").toString() + "' was ";
+            String begin = "Property '" + map.get("NAME").toString() + "' was ";
             String status = map.get("STATUS").toString();
 
             switch (status) {
@@ -25,10 +23,12 @@ public class PlainFormatter {
                     if (value == null) {
                         next.append("null");
                     } else {
-                        if (value instanceof List) {
+                        if (isRewedType(value)) {
                             next.append("[complex value]");
-                        } else {
+                        } else if(!(value instanceof String)){
                             next.append(value);
+                        } else {
+                            next.append("'").append(value).append("'");
                         }
                     }
                     stringJoiner.add(next);
@@ -37,20 +37,25 @@ public class PlainFormatter {
                     next.append(begin);
                     next.append("updated. From ");
                     Object oldValue = map.get("OLD VALUE");
-                    if (oldValue == null) {
-                        next.append("null to ");
-                    } else if (oldValue instanceof Object[]) {
-                        next.append("[complex value] to ");
-                    } else {
-                        next.append(oldValue).append(" to ");
-                    }
                     Object newValue = map.get("NEW VALUE");
+                    if (oldValue == null) {
+                        next.append("null");
+                    } else if (isRewedType(oldValue)) {
+                        next.append("[complex value]");
+                    } else if(!(oldValue instanceof String)) {
+                        next.append(oldValue);
+                    } else {
+                        next.append("'").append(oldValue).append("'");
+                    }
+                    next.append(" to ");
                     if (newValue == null) {
                         next.append("null");
-                    } else if (newValue.getClass().isArray()) {
+                    } else if (isRewedType(newValue)) {
                         next.append("[complex value]");
-                    } else {
+                    } else if(!(newValue instanceof String)) {
                         next.append(newValue);
+                    } else {
+                        next.append("'").append(newValue).append("'");
                     }
                     stringJoiner.add(next);
                     break;
@@ -61,5 +66,9 @@ public class PlainFormatter {
             }
         }
         return stringJoiner.toString();
+    }
+
+    private static boolean isRewedType(Object o) {
+        return (!(o instanceof Integer) && !(o instanceof String) && !(o instanceof Boolean));
     }
 }

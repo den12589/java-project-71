@@ -27,8 +27,12 @@ public class Differ {
         return format(result, formatOutput);
     }
 
+    public static String generate(String filePath1, String filePath2) throws IOException {
+        return generate(filePath1, filePath2, "stylish");
+    }
+
     private static String readFile(String filePath) throws IOException {
-        var path = Paths.get(filePath);
+        var path = Paths.get(filePath).toAbsolutePath().normalize();
         return Files.readString(path).trim();
     }
 
