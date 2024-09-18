@@ -1,11 +1,11 @@
 package hexlet.code;
 
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeSet;
 import java.util.HashMap;
+import java.util.Objects;
 
 public class Comparator {
 
@@ -17,39 +17,31 @@ public class Comparator {
         key.forEach(nextKey -> {
             Map<String, Object> map = new HashMap<>();
             map.put("NAME", nextKey);
-            if (!file1.containsKey(nextKey)) {
-                map.put("STATUS", "ADD");
+            String status = getStatus(file1, file2, nextKey);
+            map.put("STATUS", status);
+            if (status.equals("REMOVED") || status.equals("UPDATE") || status.equals("SAME")) {
+                map.put("OLD VALUE", file1.get(nextKey));
+            }
+            if (status.equals("ADD") || status.equals("UPDATE")) {
                 map.put("NEW VALUE", file2.get(nextKey));
-            } else {
-                if (!file2.containsKey(nextKey)) {
-                    map.put("STATUS", "REMOVED");
-                    map.put("OLD VALUE", file1.get(nextKey));
-                } else {
-                    var firstGetObj = file1.get(nextKey);
-                    var secondGetObj = file2.get(nextKey);
-                    if (firstGetObj == null || secondGetObj == null) {
-                        if (firstGetObj == null && secondGetObj == null) {
-                            map.put("STATUS", "SAME");
-                            map.put("OLD VALUE", null);
-                        } else {
-                            map.put("STATUS", "UPDATE");
-                            map.put("OLD VALUE", firstGetObj);
-                            map.put("NEW VALUE", secondGetObj);
-                        }
-                    } else {
-                        if (firstGetObj.equals(secondGetObj)) {
-                            map.put("STATUS", "SAME");
-                            map.put("OLD VALUE", firstGetObj);
-                        } else {
-                            map.put("STATUS", "UPDATE");
-                            map.put("OLD VALUE", firstGetObj);
-                            map.put("NEW VALUE", secondGetObj);
-                        }
-                    }
-                }
             }
             result.add(map);
         });
         return result;
+    }
+
+    public static String getStatus(Map<String, Object> file1, Map<String, Object> file2, String key) {
+        if (!file1.containsKey(key)) {
+            return "ADD";
+        }
+        if (!file2.containsKey(key)) {
+            return "REMOVED";
+        }
+        var firstGetObj = Objects.isNull(file1.get(key)) ? "null" : file1.get(key);
+        var secondGetObj = Objects.isNull(file2.get(key)) ? "null" : file2.get(key);
+        if (firstGetObj.equals(secondGetObj)) {
+            return "SAME";
+        }
+        return "UPDATE";
     }
 }
