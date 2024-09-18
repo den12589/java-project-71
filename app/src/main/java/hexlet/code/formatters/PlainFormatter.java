@@ -1,6 +1,8 @@
 package hexlet.code.formatters;
 
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.StringJoiner;
 
 public class PlainFormatter {
     public static String format(List<Map<String, Object>> compareList) {
@@ -25,7 +27,7 @@ public class PlainFormatter {
                     } else {
                         if (isRewedType(value)) {
                             next.append("[complex value]");
-                        } else if(!(value instanceof String)){
+                        } else if (!(value instanceof String)) {
                             next.append(value);
                         } else {
                             next.append("'").append(value).append("'");
@@ -42,7 +44,7 @@ public class PlainFormatter {
                         next.append("null");
                     } else if (isRewedType(oldValue)) {
                         next.append("[complex value]");
-                    } else if(!(oldValue instanceof String)) {
+                    } else if (!(oldValue instanceof String)) {
                         next.append(oldValue);
                     } else {
                         next.append("'").append(oldValue).append("'");
@@ -52,7 +54,7 @@ public class PlainFormatter {
                         next.append("null");
                     } else if (isRewedType(newValue)) {
                         next.append("[complex value]");
-                    } else if(!(newValue instanceof String)) {
+                    } else if (!(newValue instanceof String)) {
                         next.append(newValue);
                     } else {
                         next.append("'").append(newValue).append("'");
