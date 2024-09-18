@@ -9,7 +9,7 @@ public class StylishFormatter {
     public static String format(List<Map<String, Object>> compareList) {
         StringJoiner result = new StringJoiner("\n");
         result.add("{");
-        for (Map<String, Object> map : compareList) {
+        compareList.forEach(map -> {
             String status = map.get("STATUS").toString();
             String oldValue = Objects.isNull(map.get("OLD VALUE")) ? "null" : map.get("OLD VALUE").toString();
             String newValue = Objects.isNull(map.get("NEW VALUE")) ? "null" : map.get("NEW VALUE").toString();
@@ -27,9 +27,10 @@ public class StylishFormatter {
                     result.add(" - " + map.get("NAME") + ": " + oldValue);
                     result.add(" + " + map.get("NAME") + ": " + newValue);
                     break;
-                default: throw new RuntimeException("Status isn't correct");
+                default:
+                    throw new RuntimeException("Status isn't correct");
             }
-        }
+        });
         result.add("}");
         return result.toString();
     }
