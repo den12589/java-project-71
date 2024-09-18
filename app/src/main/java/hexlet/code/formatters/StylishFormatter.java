@@ -10,29 +10,19 @@ public class StylishFormatter {
         StringJoiner result = new StringJoiner("\n");
         result.add("{");
         for (Map<String, Object> map : compareList) {
+            var name = map.get("NAME");
             var status = map.get("STATUS");
-            String nextObj;
-            switch (status.toString()) {
-                case "ADD":
-                    nextObj = Objects.isNull(map.get("NEW VALUE")) ? "null" : map.get("NEW VALUE").toString();
-                    result.add(" + " + map.get("NAME") + ": " + nextObj);
-                    break;
-                case "REMOVED":
-                    nextObj = Objects.isNull(map.get("OLD VALUE")) ? "null" : map.get("OLD VALUE").toString();
-                    result.add(" - " + map.get("NAME") + ": " + nextObj);
-                    break;
-                case "SAME":
-                    nextObj = Objects.isNull(map.get("OLD VALUE")) ? "null" : map.get("OLD VALUE").toString();
-                    result.add("   " + map.get("NAME") + ": " + nextObj);
-                    break;
-                case "UPDATE":
-                    nextObj = Objects.isNull(map.get("OLD VALUE")) ? "null" : map.get("OLD VALUE").toString();
-                    result.add(" - " + map.get("NAME") + ": " + nextObj);
-                    nextObj = Objects.isNull(map.get("NEW VALUE")) ? "null" : map.get("NEW VALUE").toString();
-                    result.add(" + " + map.get("NAME") + ": " + nextObj);
-                    break;
-                default:
-                    throw new RuntimeException("Can't read status at StylishFormat");
+            if (status.equals("REMOVED") || status.equals("UPDATE") || status.equals("SAME")) {
+                String oldValue = Objects.isNull(map.get("OLD VALUE")) ? "null" : map.get("OLD VALUE").toString();
+                if (status.equals("SAME")) {
+                    result.add("   " + name + ": " + oldValue);
+                } else {
+                    result.add(" - " + name + ": " + oldValue);
+                }
+            }
+            if (status.equals("ADD") || status.equals("UPDATE")) {
+                String temp = Objects.isNull(map.get("NEW VALUE")) ? "null" : map.get("NEW VALUE").toString();
+                result.add(" + " + name + ": " + temp);
             }
         }
         result.add("}");
