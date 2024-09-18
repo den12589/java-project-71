@@ -10,23 +10,22 @@ public class StylishFormatter {
         StringJoiner result = new StringJoiner("\n");
         result.add("{");
         for (Map<String, Object> map : compareList) {
-            var name = map.get("NAME");
             String status = map.get("STATUS").toString();
             String oldValue = Objects.isNull(map.get("OLD VALUE")) ? "null" : map.get("OLD VALUE").toString();
             String newValue = Objects.isNull(map.get("NEW VALUE")) ? "null" : map.get("NEW VALUE").toString();
             switch (status) {
                 case "ADD":
-                    result.add(" + " + name + ": " + newValue);
+                    result.add(" + " + map.get("NAME") + ": " + newValue);
                     break;
                 case "REMOVED":
-                    result.add(" - " + name + ": " + oldValue);
+                    result.add(" - " + map.get("NAME") + ": " + oldValue);
                     break;
                 case "SAME":
-                    result.add("   " + name + ": " + oldValue);
+                    result.add("   " + map.get("NAME") + ": " + oldValue);
                     break;
                 case "UPDATE":
-                    result.add(" - " + name + ": " + oldValue);
-                    result.add(" + " + name + ": " + newValue);
+                    result.add(" - " + map.get("NAME") + ": " + oldValue);
+                    result.add(" + " + map.get("NAME") + ": " + newValue);
                     break;
                 default: throw new RuntimeException("Status isn't correct");
             }
