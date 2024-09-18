@@ -22,7 +22,7 @@ public class Comparator {
                 map.put("NEW VALUE", file2.get(nextKey));
             } else {
                 if (!file2.containsKey(nextKey)) {
-                    map.put("STATUS", "DELETED");
+                    map.put("STATUS", "REMOVED");
                     map.put("OLD VALUE", file1.get(nextKey));
                 } else {
                     var firstGetObj = file1.get(nextKey);

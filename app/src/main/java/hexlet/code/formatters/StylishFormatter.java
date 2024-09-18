@@ -17,7 +17,7 @@ public class StylishFormatter {
                     nextObj = Objects.isNull(map.get("NEW VALUE")) ? "null" : map.get("NEW VALUE").toString();
                     result.add("+ " + map.get("NAME") + ": " + nextObj);
                     break;
-                case "DELETED":
+                case "REMOVED":
                     nextObj = Objects.isNull(map.get("OLD VALUE")) ? "null" : map.get("OLD VALUE").toString();
                     result.add("- " + map.get("NAME") + ": " + nextObj);
                     break;
