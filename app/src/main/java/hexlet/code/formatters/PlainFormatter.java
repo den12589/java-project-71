@@ -9,13 +9,12 @@ public class PlainFormatter {
     public static String format(List<Map<String, Object>> compareList) {
         StringJoiner stringJoiner = new StringJoiner("\n");
         for (Map<String, Object> map : compareList) {
-            String status = map.get("STATUS").toString();
-            if (status.equals("SAME")) {
+            if (map.get("STATUS").toString().equals("SAME")) {
                 continue;
             }
             StringBuilder next = new StringBuilder();
             next.append("Property '").append(map.get("NAME").toString()).append("' was ");
-            switch (status) {
+            switch (map.get("STATUS").toString()) {
                 case "REMOVED" -> next.append("removed");
                 case "ADD" -> next.append("added with value: ")
                         .append(createValueString(map.get("NEW VALUE")));
