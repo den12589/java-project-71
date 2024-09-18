@@ -35,7 +35,7 @@ public class StylishFormatter {
                     throw new RuntimeException("Can't read status at StylishFormat");
             }
         }
-        result.add("}");
+        result.add("");
         return result.toString();
     }
 }
