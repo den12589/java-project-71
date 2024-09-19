@@ -8,7 +8,7 @@ import picocli.CommandLine.Option;
 import java.util.concurrent.Callable;
 
 @Command(name = "GenDiffer", mixinStandardHelpOptions = true, version = "GenDiff v.1.0.0")
-public class App implements Callable<Integer> {
+public final class App implements Callable<Integer> {
     @Parameters(index = "0", paramLabel = "filePath1", description = "path to first file")
     private String file1;
     @Parameters(index = "1", paramLabel = "filePath2", description = "path to second file")
@@ -21,7 +21,6 @@ public class App implements Callable<Integer> {
     private String format;
 
     @Override
-    //проверка hexlet-Action не проходит. Пишут что нужно добавить какой нибудь комментарий))
     public Integer call() throws Exception {
         System.out.println(Differ.generate(file1, file2, format));
         return 0;
