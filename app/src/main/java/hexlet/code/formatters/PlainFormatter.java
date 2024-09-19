@@ -7,26 +7,22 @@ import java.util.StringJoiner;
 
 public class PlainFormatter {
     public static String format(List<Map<String, Object>> compareList) {
-        StringJoiner stringJoiner = new StringJoiner("\n");
-        for (Map<String, Object> map : compareList) {
-            if (map.get("STATUS").toString().equals("SAME")) {
-                continue;
-            }
-            StringBuilder next = new StringBuilder();
-            next.append("Property '").append(map.get("NAME").toString()).append("' was ");
+        StringJoiner result = new StringJoiner("\n");
+        compareList.forEach(map -> {
+            String oldValue = createValueString(map.get("OLD VALUE"));
+            String newValue = createValueString(map.get("NEW VALUE"));
+            String name = map.get("NAME").toString();
             switch (map.get("STATUS").toString()) {
-                case "REMOVED" -> next.append("removed");
-                case "ADD" -> next.append("added with value: ")
-                        .append(createValueString(map.get("NEW VALUE")));
-                case "UPDATE" -> next.append("updated. From ")
-                        .append(createValueString(map.get("OLD VALUE")))
-                        .append(" to ")
-                        .append(createValueString(map.get("NEW VALUE")));
+                case "SAME" -> {
+                }
+                case "ADD" -> result.add("Property '" + name + "' was added with value: " + newValue);
+                case "UPDATE" ->
+                        result.add("Property '" + name + "' was updated. From " + oldValue + " to " + newValue);
+                case "REMOVED" -> result.add("Property '" + name + "' was removed");
                 default -> throw new RuntimeException("Status isn't correct");
             }
-            stringJoiner.add(next);
-        }
-        return stringJoiner.toString();
+        });
+        return result.toString();
     }
 
     private static String createValueString(Object o) {
