@@ -14,7 +14,7 @@ public class JsonFormatter {
         stringJoiner.add("{");
         int count = 1;
         for (Map<String, Object> map : compareList) {
-            stringJoiner.add("  \"change_" + count + "\": " + mapper.writeValueAsString(map) + ",");
+            stringJoiner.add("  \"diff_" + count + "\": " + mapper.writeValueAsString(map) + ",");
             count++;
         }
         return stringJoiner.toString().substring(0, stringJoiner.length() - 1) + "\n}";

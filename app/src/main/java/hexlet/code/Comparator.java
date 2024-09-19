@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeSet;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Objects;
 
 public class Comparator {
@@ -15,7 +15,7 @@ public class Comparator {
         key.addAll(file2.keySet());
         List<Map<String, Object>> result = new ArrayList<>();
         key.forEach(nextKey -> {
-            Map<String, Object> map = new HashMap<>();
+            Map<String, Object> map = new LinkedHashMap<>();
             map.put("NAME", nextKey);
             String status = getStatus(file1, file2, nextKey);
             map.put("STATUS", status);
