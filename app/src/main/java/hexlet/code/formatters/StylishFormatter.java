@@ -14,17 +14,17 @@ public class StylishFormatter {
             String newValue = Objects.isNull(map.get("NEW VALUE")) ? "null" : map.get("NEW VALUE").toString();
             switch (map.get("STATUS").toString()) {
                 case "ADD":
-                    result.add(" + " + map.get("NAME") + ": " + newValue);
+                    result.add("  + " + map.get("NAME") + ": " + newValue);
                     break;
                 case "REMOVED":
-                    result.add(" - " + map.get("NAME") + ": " + oldValue);
+                    result.add("  - " + map.get("NAME") + ": " + oldValue);
                     break;
                 case "SAME":
-                    result.add("   " + map.get("NAME") + ": " + oldValue);
+                    result.add("    " + map.get("NAME") + ": " + oldValue);
                     break;
                 case "UPDATE":
-                    result.add(" - " + map.get("NAME") + ": " + oldValue);
-                    result.add(" + " + map.get("NAME") + ": " + newValue);
+                    result.add("  - " + map.get("NAME") + ": " + oldValue);
+                    result.add("  + " + map.get("NAME") + ": " + newValue);
                     break;
                 default:
                     throw new RuntimeException("Status isn't correct");
