@@ -30,7 +30,7 @@ public class Comparator {
         return result;
     }
 
-    public static String getStatus(Map<String, Object> file1, Map<String, Object> file2, String key) {
+    private static String getStatus(Map<String, Object> file1, Map<String, Object> file2, String key) {
         if (!file1.containsKey(key)) {
             return "ADD";
         }

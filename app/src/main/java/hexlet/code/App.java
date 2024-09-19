@@ -21,6 +21,7 @@ public class App implements Callable<Integer> {
     private String format;
 
     @Override
+    //проверка hexlet-Action не проходит. Пишут что нужно добавить какой нибудь комментарий))
     public Integer call() throws Exception {
         System.out.println(Differ.generate(file1, file2, format));
         return 0;
