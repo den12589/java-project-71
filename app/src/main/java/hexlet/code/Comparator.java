@@ -16,14 +16,16 @@ public class Comparator {
         List<Map<String, Object>> result = new ArrayList<>();
         key.forEach(nextKey -> {
             Map<String, Object> map = new LinkedHashMap<>();
-            map.put("NAME", nextKey);
             String status = getStatus(file1, file2, nextKey);
+            map.put("NAME", nextKey);
             map.put("STATUS", status);
-            if (status.equals("REMOVED") || status.equals("UPDATE") || status.equals("SAME")) {
-                map.put("OLD VALUE", file1.get(nextKey));
-            }
-            if (status.equals("ADD") || status.equals("UPDATE")) {
-                map.put("NEW VALUE", file2.get(nextKey));
+            switch (status) {
+                case "ADD" -> map.put("NEW VALUE", file2.get(nextKey));
+                case "UPDATE" -> {
+                    map.put("OLD VALUE", file1.get(nextKey));
+                    map.put("NEW VALUE", file2.get(nextKey));
+                }
+                case "SAME", "REMOVED" -> map.put("OLD VALUE", file1.get(nextKey));
             }
             result.add(map);
         });
