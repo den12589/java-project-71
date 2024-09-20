@@ -47,7 +47,7 @@ public class Differ {
             case "stylish" -> StylishFormatter.format(result);
             case "plain" -> PlainFormatter.format(result);
             case "json" -> JsonFormatter.format(result);
-            default -> throw new RuntimeException("Unsupported format");
+            default -> throw new RuntimeException(formatOutput + " output format isn't supported");
         };
     }
 }

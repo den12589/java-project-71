@@ -12,7 +12,7 @@ public class Parser {
         return switch (typeFile) {
             case "json" -> new ObjectMapper().readValue(content, Map.class);
             case "yaml", "yml" -> new ObjectMapper(new YAMLFactory()).readValue(content, Map.class);
-            default -> throw new RuntimeException("file_type isn't supported");
+            default -> throw new RuntimeException(typeFile + " file_type isn't supported");
         };
     }
 }

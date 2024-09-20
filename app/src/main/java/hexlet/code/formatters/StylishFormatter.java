@@ -6,13 +6,13 @@ import java.util.Objects;
 import java.util.StringJoiner;
 
 public class StylishFormatter {
-    public static String format(List<Map<String, Object>> compareList) {
+    public static String format(List<Map<String, Object>> differences) {
         StringJoiner result = new StringJoiner("\n");
         result.add("{");
-        compareList.forEach(map -> {
+        differences.forEach(map -> {
             String name = map.get("NAME").toString();
-            String oldValue = createValueString(map.get("OLD VALUE"));
-            String newValue = createValueString(map.get("NEW VALUE"));
+            String oldValue = Objects.toString(map.get("OLD VALUE"), "null");
+            String newValue = Objects.toString(map.get("NEW VALUE"), "null");
             switch (map.get("STATUS").toString()) {
                 case "ADD" -> result.add("  + " + name + ": " + newValue);
                 case "SAME" -> result.add("    " + name + ": " + oldValue);
@@ -26,9 +26,5 @@ public class StylishFormatter {
         });
         result.add("}");
         return result.toString();
-    }
-
-    private static String createValueString(Object o) {
-        return Objects.isNull(o) ? "null" : o.toString();
     }
 }

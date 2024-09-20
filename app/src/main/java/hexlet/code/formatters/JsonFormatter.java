@@ -8,12 +8,12 @@ import java.util.Map;
 import java.util.StringJoiner;
 
 public class JsonFormatter {
-    public static String format(List<Map<String, Object>> compareList) throws JsonProcessingException {
+    public static String format(List<Map<String, Object>> differences) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
         StringJoiner stringJoiner = new StringJoiner("\n");
         stringJoiner.add("{");
         int count = 1;
-        for (Map<String, Object> map : compareList) {
+        for (Map<String, Object> map : differences) {
             stringJoiner.add("  \"diff_" + count + "\": " + mapper.writeValueAsString(map) + ",");
             count++;
         }

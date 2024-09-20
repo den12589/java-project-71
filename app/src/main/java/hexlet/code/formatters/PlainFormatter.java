@@ -6,9 +6,9 @@ import java.util.Objects;
 import java.util.StringJoiner;
 
 public class PlainFormatter {
-    public static String format(List<Map<String, Object>> compareList) {
+    public static String format(List<Map<String, Object>> differences) {
         StringJoiner result = new StringJoiner("\n");
-        compareList.forEach(map -> {
+        differences.forEach(map -> {
             String name = map.get("NAME").toString();
             String oldValue = createValueString(map.get("OLD VALUE"));
             String newValue = createValueString(map.get("NEW VALUE"));
