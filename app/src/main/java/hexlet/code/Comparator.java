@@ -10,10 +10,10 @@ import java.util.Objects;
 public class Comparator {
 
     public static List<Map<String, Object>> compare(Map<String, Object> file1, Map<String, Object> file2) {
+        List<Map<String, Object>> result = new ArrayList<>();
         var key = new TreeSet<String>();
         key.addAll(file1.keySet());
         key.addAll(file2.keySet());
-        List<Map<String, Object>> result = new ArrayList<>();
         key.forEach(nextKey -> {
             Map<String, Object> map = new LinkedHashMap<>();
             String status = getStatus(file1, file2, nextKey);
