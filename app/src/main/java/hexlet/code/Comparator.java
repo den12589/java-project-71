@@ -26,6 +26,7 @@ public class Comparator {
                     map.put("NEW VALUE", file2.get(nextKey));
                 }
                 case "SAME", "REMOVED" -> map.put("OLD VALUE", file1.get(nextKey));
+                default -> throw new RuntimeException("Status isn't correct");
             }
             result.add(map);
         });
