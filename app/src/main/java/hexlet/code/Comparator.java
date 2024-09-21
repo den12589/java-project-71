@@ -27,6 +27,7 @@ public class Comparator {
                 map.put("STATUS", "SAME");
                 map.put("OLD VALUE", file1.get(nextKey));
             } else {
+                map.put("STATUS", "UPDATE");
                 map.put("OLD VALUE", file1.get(nextKey));
                 map.put("NEW VALUE", file2.get(nextKey));
             }
