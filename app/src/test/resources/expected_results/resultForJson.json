@@ -1,17 +1,72 @@
-{
-  "diff_1": {"NAME":"chars1","STATUS":"SAME","OLD VALUE":["a","b","c"]},
-  "diff_2": {"NAME":"chars2","STATUS":"UPDATED","OLD VALUE":["d","e","f"],"NEW VALUE":false},
-  "diff_3": {"NAME":"checked","STATUS":"UPDATED","OLD VALUE":false,"NEW VALUE":true},
-  "diff_4": {"NAME":"default","STATUS":"UPDATED","OLD VALUE":null,"NEW VALUE":["value1","value2"]},
-  "diff_5": {"NAME":"id","STATUS":"UPDATED","OLD VALUE":45,"NEW VALUE":null},
-  "diff_6": {"NAME":"key1","STATUS":"REMOVED","OLD VALUE":"value1"},
-  "diff_7": {"NAME":"key2","STATUS":"ADD","NEW VALUE":"value2"},
-  "diff_8": {"NAME":"numbers1","STATUS":"SAME","OLD VALUE":[1,2,3,4]},
-  "diff_9": {"NAME":"numbers2","STATUS":"UPDATED","OLD VALUE":[2,3,4,5],"NEW VALUE":[22,33,44,55]},
-  "diff_10": {"NAME":"numbers3","STATUS":"REMOVED","OLD VALUE":[3,4,5]},
-  "diff_11": {"NAME":"numbers4","STATUS":"ADD","NEW VALUE":[4,5,6]},
-  "diff_12": {"NAME":"obj1","STATUS":"ADD","NEW VALUE":{"nestedKey":"value","isNested":true}},
-  "diff_13": {"NAME":"setting1","STATUS":"UPDATED","OLD VALUE":"Some value","NEW VALUE":"Another value"},
-  "diff_14": {"NAME":"setting2","STATUS":"UPDATED","OLD VALUE":200,"NEW VALUE":300},
-  "diff_15": {"NAME":"setting3","STATUS":"UPDATED","OLD VALUE":true,"NEW VALUE":"none"}
-}
+[ {
+  "NAME" : "chars1",
+  "STATUS" : "SAME",
+  "OLD_VALUE" : [ "a", "b", "c" ]
+}, {
+  "NAME" : "chars2",
+  "STATUS" : "UPDATED",
+  "OLD_VALUE" : [ "d", "e", "f" ],
+  "NEW_VALUE" : false
+}, {
+  "NAME" : "checked",
+  "STATUS" : "UPDATED",
+  "OLD_VALUE" : false,
+  "NEW_VALUE" : true
+}, {
+  "NAME" : "default",
+  "STATUS" : "UPDATED",
+  "OLD_VALUE" : null,
+  "NEW_VALUE" : [ "value1", "value2" ]
+}, {
+  "NAME" : "id",
+  "STATUS" : "UPDATED",
+  "OLD_VALUE" : 45,
+  "NEW_VALUE" : null
+}, {
+  "NAME" : "key1",
+  "STATUS" : "REMOVED",
+  "OLD_VALUE" : "value1"
+}, {
+  "NAME" : "key2",
+  "STATUS" : "ADD",
+  "NEW_VALUE" : "value2"
+}, {
+  "NAME" : "numbers1",
+  "STATUS" : "SAME",
+  "OLD_VALUE" : [ 1, 2, 3, 4 ]
+}, {
+  "NAME" : "numbers2",
+  "STATUS" : "UPDATED",
+  "OLD_VALUE" : [ 2, 3, 4, 5 ],
+  "NEW_VALUE" : [ 22, 33, 44, 55 ]
+}, {
+  "NAME" : "numbers3",
+  "STATUS" : "REMOVED",
+  "OLD_VALUE" : [ 3, 4, 5 ]
+}, {
+  "NAME" : "numbers4",
+  "STATUS" : "ADD",
+  "NEW_VALUE" : [ 4, 5, 6 ]
+}, {
+  "NAME" : "obj1",
+  "STATUS" : "ADD",
+  "NEW_VALUE" : {
+    "nestedKey" : "value",
+    "isNested" : true
+  }
+}, {
+  "NAME" : "setting1",
+  "STATUS" : "UPDATED",
+  "OLD_VALUE" : "Some value",
+  "NEW_VALUE" : "Another value"
+}, {
+  "NAME" : "setting2",
+  "STATUS" : "UPDATED",
+  "OLD_VALUE" : 200,
+  "NEW_VALUE" : 300
+}, {
+  "NAME" : "setting3",
+  "STATUS" : "UPDATED",
+  "OLD_VALUE" : true,
+  "NEW_VALUE" : "none"
+} ]

@@ -2,21 +2,20 @@ package hexlet.code.formatters;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import hexlet.code.DifferKey;
 
 import java.util.List;
 import java.util.Map;
-import java.util.StringJoiner;
 
 public class JsonFormatter {
-    public static String format(List<Map<String, Object>> differences) throws JsonProcessingException {
-        ObjectMapper mapper = new ObjectMapper();
-        StringJoiner stringJoiner = new StringJoiner("\n");
-        stringJoiner.add("{");
-        int count = 1;
-        for (Map<String, Object> map : differences) {
-            stringJoiner.add("  \"diff_" + count + "\": " + mapper.writeValueAsString(map) + ",");
-            count++;
+    public static String format(List<Map<DifferKey, Object>> differences) {
+        String result = "";
+        try {
+            result = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(differences);
+        } catch (JsonProcessingException e) {
+            System.out.println(e.getClass().getName()
+                    + " : " + e.getOriginalMessage());
         }
-        return stringJoiner.toString().substring(0, stringJoiner.length() - 1) + "\n}";
+        return result;
     }
 }
