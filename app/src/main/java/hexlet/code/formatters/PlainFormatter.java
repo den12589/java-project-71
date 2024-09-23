@@ -20,6 +20,8 @@ public class PlainFormatter {
                 case ADD -> result.add("Property '" + name + "' was added with value: " + newValue);
                 case REMOVED -> result.add("Property '" + name + "' was removed");
                 case UPDATED -> result.add("Property '" + name + "' was updated. From " + oldValue + " to " + newValue);
+                default -> {
+                } // only for checkstyle
             }
         });
         return result.toString();

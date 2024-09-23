@@ -25,6 +25,8 @@ public class StylishFormatter {
                 case ADD -> result.add("  + " + name + ": " + newValue);
                 case SAME -> result.add("    " + name + ": " + oldValue);
                 case REMOVED -> result.add("  - " + name + ": " + oldValue);
+                default -> { // only for checkstyle
+                }
             }
         });
         result.add("}");
