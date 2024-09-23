@@ -15,13 +15,11 @@ public class PlainFormatter {
             String name = map.get(DifferKey.NAME).toString();
             String oldValue = createValueString(map.get(DifferKey.OLD_VALUE));
             String newValue = createValueString(map.get(DifferKey.NEW_VALUE));
-            switch (map.get(DifferKey.STATUS)) {
-                case Status.ADD -> result.add("Property '" + name + "' was added with value: " + newValue);
-                case Status.SAME -> {
-                }
-                case Status.REMOVED -> result.add("Property '" + name + "' was removed");
-                case Status.UPDATED -> result.add("Property '" + name + "' was updated. From " + oldValue + " to " + newValue);
-                default -> throw new RuntimeException("Status isn't correct");
+            Status status = Status.valueOf(map.get(DifferKey.STATUS).toString());
+            switch (status) {
+                case ADD -> result.add("Property '" + name + "' was added with value: " + newValue);
+                case REMOVED -> result.add("Property '" + name + "' was removed");
+                case UPDATED -> result.add("Property '" + name + "' was updated. From " + oldValue + " to " + newValue);
             }
         });
         return result.toString();

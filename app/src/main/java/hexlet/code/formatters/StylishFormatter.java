@@ -16,15 +16,15 @@ public class StylishFormatter {
             String name = map.get(DifferKey.NAME).toString();
             String oldValue = Objects.toString(map.get(DifferKey.OLD_VALUE), "null");
             String newValue = Objects.toString(map.get(DifferKey.NEW_VALUE), "null");
-            switch (map.get(DifferKey.STATUS)) {
-                case Status.ADD -> result.add("  + " + name + ": " + newValue);
-                case Status.SAME -> result.add("    " + name + ": " + oldValue);
-                case Status.REMOVED -> result.add("  - " + name + ": " + oldValue);
-                case Status.UPDATED -> {
+            Status status = Status.valueOf(map.get(DifferKey.STATUS).toString());
+            switch (status) {
+                case UPDATED -> {
                     result.add("  - " + name + ": " + oldValue);
                     result.add("  + " + name + ": " + newValue);
                 }
-                default -> throw new RuntimeException("Status isn't correct");
+                case ADD -> result.add("  + " + name + ": " + newValue);
+                case SAME -> result.add("    " + name + ": " + oldValue);
+                case REMOVED -> result.add("  - " + name + ": " + oldValue);
             }
         });
         result.add("}");
